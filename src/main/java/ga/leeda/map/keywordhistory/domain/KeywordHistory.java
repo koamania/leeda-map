@@ -1,35 +1,28 @@
-package ga.leeda.map.user.domain;
+package ga.leeda.map.keywordhistory.domain;
 
-import lombok.AllArgsConstructor;
+import ga.leeda.map.user.domain.User;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 
-@Data
 @Entity
-@AllArgsConstructor
+@Data
 @NoArgsConstructor
-@ToString
-public class User {
+public class KeywordHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @ManyToOne(targetEntity = User.class)
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    @Email
-    @Column(unique = true)
-    private String email;
-
-    @NotNull
-    private String password;
+    private String keyword;
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createDate;
+    private Date createdDate;
 }

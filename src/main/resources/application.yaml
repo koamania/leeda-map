@@ -14,3 +14,8 @@ spring:
     port: 6379
   session:
     store-type: REDIS
+
+map-search:
+  kakao:
+    host: dapi.kakao.com
+    api-key: 5bed545f676e30b9f98788c64d92bf8b

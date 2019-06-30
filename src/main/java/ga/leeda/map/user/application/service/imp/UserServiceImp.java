@@ -1,15 +1,18 @@
-package ga.leeda.map.user.interfaces.service.imp;
+package ga.leeda.map.user.application.service.imp;
 
 import ga.leeda.map.common.SessionManager;
+import ga.leeda.map.user.application.service.LoginParam;
+import ga.leeda.map.user.application.service.UserService;
+import ga.leeda.map.user.application.service.exceptions.AlreadyJoinedUser;
+import ga.leeda.map.user.application.service.exceptions.InvalidLoginParam;
 import ga.leeda.map.user.domain.User;
 import ga.leeda.map.user.domain.UserRepository;
-import ga.leeda.map.user.interfaces.service.LoginParam;
-import ga.leeda.map.user.interfaces.service.UserService;
-import ga.leeda.map.user.interfaces.service.exceptions.InvalidLoginParam;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import java.util.Optional;
 
 @Service
 public class UserServiceImp implements UserService {
@@ -20,13 +23,23 @@ public class UserServiceImp implements UserService {
         this.userRepository = userRepository;
     }
 
+    @Transactional
     public void insertNewUser(@NotNull @Email String email, @NotNull String password) {
+        User user = userRepository.findByEmail(email);
+        if (user != null) {
+            throw new AlreadyJoinedUser(email + "user already joined");
+        }
 
-        User user = new User();
-        user.setEmail(email);
-        user.setPassword(PasswordEncryptor.encrypt(password));
+        User newUser = new User();
+        newUser.setEmail(email);
+        newUser.setPassword(PasswordEncryptor.encrypt(password));
 
-        userRepository.save(user);
+        userRepository.save(newUser);
+    }
+
+    @Override
+    public Optional<User> findUser(final int userId) {
+        return userRepository.findById(userId);
     }
 
     @Override

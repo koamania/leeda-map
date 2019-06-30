@@ -1,9 +1,7 @@
 package ga.leeda.map.config;
 
-import ga.leeda.map.user.domain.User;
-import ga.leeda.map.user.interfaces.service.UserService;
+import ga.leeda.map.user.application.service.UserService;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.ApplicationEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 

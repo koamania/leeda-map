@@ -1,7 +1,6 @@
-package ga.leeda.map.user.interfaces.service;
+package ga.leeda.map.user.application.service;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 
 import javax.validation.constraints.Email;
