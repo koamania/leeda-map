@@ -1,4 +1,4 @@
-package ga.leeda.map.user.interfaces.service.exceptions;
+package ga.leeda.map.user.application.service.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
