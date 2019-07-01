@@ -6,6 +6,7 @@ spring:
     password: 11qqww22!!
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
   h2:
     console:
       enabled: true
@@ -14,6 +15,9 @@ spring:
     port: 6379
   session:
     store-type: REDIS
+  devtools:
+    livereload:
+      enabled: true
 
 map-search:
   kakao:

@@ -5,6 +5,7 @@ import ga.leeda.map.user.application.service.LoginParam;
 import ga.leeda.map.user.application.service.UserService;
 import ga.leeda.map.user.application.service.exceptions.AlreadyJoinedUser;
 import ga.leeda.map.user.application.service.exceptions.InvalidLoginParam;
+import ga.leeda.map.user.application.service.exceptions.NotFoundUser;
 import ga.leeda.map.user.domain.User;
 import ga.leeda.map.user.domain.UserRepository;
 import org.springframework.stereotype.Service;
@@ -25,9 +26,8 @@ public class UserServiceImp implements UserService {
 
     @Transactional
     public void insertNewUser(@NotNull @Email String email, @NotNull String password) {
-        User user = userRepository.findByEmail(email);
-        if (user != null) {
-            throw new AlreadyJoinedUser(email + "user already joined");
+        if (userRepository.findByEmail(email).isPresent()) {
+            throw new AlreadyJoinedUser(email + " user already joined");
         }
 
         User newUser = new User();
@@ -48,7 +48,9 @@ public class UserServiceImp implements UserService {
             return;
         }
 
-        User user = userRepository.findByEmail(param.getEmail());
+        Optional<User> userOptional = userRepository.findByEmail(param.getEmail());
+
+        User user = userOptional.orElseThrow(() -> NotFoundUser.with("not found user"));
 
         boolean validate = PasswordEncryptor.validatePassword(param.getPassword(), user.getPassword());
         if (validate) {

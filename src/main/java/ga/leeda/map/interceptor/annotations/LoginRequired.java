@@ -8,4 +8,10 @@ import java.lang.annotation.Target;
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface LoginRequired {
+    ErrorHandler handler() default ErrorHandler.REDIRECT;
+
+    enum ErrorHandler {
+        REDIRECT,
+        RESPONSE_JSON
+    }
 }

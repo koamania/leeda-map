@@ -16,8 +16,12 @@ public class MapSearchParameter {
     @NotEmpty
     private String query;
     @Positive
+    @Min(1)
+    @Max(45)
     private int page = 1;
     @Min(1)
     @Max(15)
-    private int size = 10;
+    private int size = 15;
+    private float x = 0;
+    private float y = 0;
 }

@@ -19,7 +19,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/map")
-@LoginRequired
+@LoginRequired(handler = LoginRequired.ErrorHandler.RESPONSE_JSON)
 public class MapSearchController {
 
     private final MapSearchService searchService;
@@ -37,7 +37,7 @@ public class MapSearchController {
         Optional<User> userOptional = userService.findUser(userId);
 
         if (!userOptional.isPresent()) {
-            throw new NotFoundUser(HttpStatus.INTERNAL_SERVER_ERROR, "not found user info");
+            throw NotFoundUser.with(HttpStatus.INTERNAL_SERVER_ERROR, "not found user info");
         }
 
         return ResponseEntity.ok().body(searchService.search(userOptional.get(), parameter));
