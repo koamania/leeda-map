@@ -1,0 +1,25 @@
+package ga.leeda.map.user.ui;
+
+import ga.leeda.map.common.SessionManager;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@RequestMapping
+@Controller
+public class UserLoginPageController {
+
+    @GetMapping({"", "/"})
+    public String mainPage() {
+        return loginPage();
+    }
+
+    @GetMapping("/login")
+    public String loginPage() {
+        if (SessionManager.get(SessionManager.SessionKey.LOGIN_INFO) != null) {
+            return "redirect:/map/search";
+        }
+
+        return "/login/login.html";
+    }
+}

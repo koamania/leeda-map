@@ -1,5 +1,6 @@
 package ga.leeda.map.keywordhistory.domain;
 
+import ga.leeda.map.keyword.domain.Keyword;
 import ga.leeda.map.user.domain.User;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,7 +20,9 @@ public class KeywordHistory {
     @JoinColumn(name = "user_id")
     private User user;
 
-    private String keyword;
+    @ManyToOne(targetEntity = Keyword.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "keyword_id")
+    private Keyword keyword;
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false)

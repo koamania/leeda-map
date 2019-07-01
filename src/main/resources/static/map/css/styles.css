@@ -1,0 +1,22 @@
+main {
+    width: 960px;
+    margin: 0 auto;
+}
+
+header {
+    height: 200px;
+    font-size: 38px;
+}
+
+.header-title {
+    padding-top: 80px;
+}
+
+.map-search-box {
+    width: 500px;
+}
+
+.results.search-result-box {
+    position: inherit !important;
+    width: inherit !important;
+}
