@@ -3,7 +3,7 @@
 <head>
     <title>지도 검색 페이지</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"/>
     <link rel="stylesheet" href="/map/css/styles.css"/>
 </head>
 <body>
@@ -16,13 +16,19 @@
             <input class="prompt map-search-box" id="searchBox" type="text" placeholder="주소 및 위치명을 입력해주세요">
             <i class="search icon"></i>
         </div>
+        <div class="recently-keyword-wrapper">
+            <div class="ui label">
+                <span id="recentlyKeywordTitle">최근 검색어</span>
+            </div>
+        </div>
         <div class="search-result-box results">
             <div class="ui list" id="searchResultList"></div>
         </div>
     </div>
+    <footer></footer>
 </main>
 </body>
 <script type="text/javascript" src="/dist/js/jquery-2.2.4.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
 <script type="text/javascript" src="/map/js/map.js"></script>
 </html>

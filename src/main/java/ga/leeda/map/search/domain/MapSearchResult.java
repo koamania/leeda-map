@@ -5,5 +5,9 @@ import java.util.List;
 public interface MapSearchResult {
     int getTotalCount();
 
-    List<MapInfomation> getInfomation();
+    int getResultCount();
+
+    boolean isEnd();
+
+    List<PlaceInfomation> getInfomation();
 }

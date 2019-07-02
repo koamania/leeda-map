@@ -7,6 +7,9 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
   h2:
     console:
       enabled: true
@@ -23,3 +26,8 @@ map-search:
   kakao:
     host: dapi.kakao.com
     api-key: 5bed545f676e30b9f98788c64d92bf8b
+logging:
+  level:
+    org:
+      hibernate:
+        type: trace

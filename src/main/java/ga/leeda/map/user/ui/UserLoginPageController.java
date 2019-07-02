@@ -11,7 +11,7 @@ public class UserLoginPageController {
 
     @GetMapping({"", "/"})
     public String mainPage() {
-        return loginPage();
+        return "redirect:/login";
     }
 
     @GetMapping("/login")

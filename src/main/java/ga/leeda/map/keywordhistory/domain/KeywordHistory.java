@@ -4,7 +4,7 @@ import ga.leeda.map.keyword.domain.Keyword;
 import ga.leeda.map.user.domain.User;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -24,8 +24,8 @@ public class KeywordHistory {
     @JoinColumn(name = "keyword_id")
     private Keyword keyword;
 
-    @CreationTimestamp
-    @Column(nullable = false, updatable = false)
+    @UpdateTimestamp
+    @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
 }
