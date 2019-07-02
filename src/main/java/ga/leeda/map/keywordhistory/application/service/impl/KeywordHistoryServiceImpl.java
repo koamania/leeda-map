@@ -6,9 +6,14 @@ import ga.leeda.map.keywordhistory.application.service.KeywordHistoryService;
 import ga.leeda.map.keywordhistory.domain.KeywordHistory;
 import ga.leeda.map.keywordhistory.domain.KeywordHistoryRepository;
 import ga.leeda.map.user.domain.User;
+import org.springframework.data.domain.Pageable;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Date;
+import java.util.List;
 
 @Service
 public class KeywordHistoryServiceImpl implements KeywordHistoryService {
@@ -23,14 +28,24 @@ public class KeywordHistoryServiceImpl implements KeywordHistoryService {
 
     @Override
     @Async
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void addHistory(final User user, final String keywordString) {
         Keyword keyword = keywordRepository.findOrCreate(keywordString);
+        keyword.increaseHitCount();
 
-        KeywordHistory keywordHistory = new KeywordHistory();
-        keywordHistory.setUser(user);
-        keywordHistory.setKeyword(keyword);
+        KeywordHistory keywordHistory = historyRepository.findByKeyword(user, keyword)
+                .orElseGet(() -> {
+                    KeywordHistory newKeywordHistory = new KeywordHistory();
+                    newKeywordHistory.setUser(user);
+                    newKeywordHistory.setKeyword(keyword);
+                    return newKeywordHistory;
+                });
 
+        keywordHistory.setCreatedDate(new Date());
         historyRepository.save(keywordHistory);
+    }
+
+    public List<KeywordHistory> getKeywordHistory(User user, Pageable pageable) {
+        return historyRepository.findByUser(user, pageable);
     }
 }

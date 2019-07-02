@@ -1,6 +1,8 @@
 package ga.leeda.map.search.domain;
 
-public interface MapInfomation {
+public interface PlaceInfomation {
+    String getId();
+
     String getPlaceName();
 
     String getAddressName();
@@ -10,6 +12,8 @@ public interface MapInfomation {
     float getX();
 
     float getY();
+
+    String getPlaceUrl();
 
     String getMapUrl();
 
