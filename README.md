@@ -49,7 +49,13 @@ spring boot 기본 포트로 8080을 사용합니다. 이미 사용중인 경우
 - JDK 8
 - Gradle 4.10.2
 - Spring boot 2.1.6
- 
+
+## 브라우저 테스트
+- Chrome
+- Edge
+- Firefox
+- Safari
+
 ## 오픈소스 라이센스 명시
 - [Spring Framework](https://spring.io/)
     - 스프링 부트 기반 어플리케이션 개발
