@@ -8,7 +8,7 @@ import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.util.Arrays;
 
-public class PBJDF2HashAlgorithm {
+public class PBKDF2HashAlgorithm {
 
     private static final String ALGORITHM = "PBKDF2WithHmacSHA1";
 
@@ -74,45 +74,5 @@ public class PBJDF2HashAlgorithm {
         PBEKeySpec spec = new PBEKeySpec(password, salt, iteration, bytes * 8);
         SecretKeyFactory factory = SecretKeyFactory.getInstance(ALGORITHM);
         return factory.generateSecret(spec).getEncoded();
-    }
-
-    public static void main(String[] a) {
-        try
-        {
-            // Print out 10 hashes
-            for(int i = 0; i < 10; i++)
-                System.out.println(PBJDF2HashAlgorithm.createHash("p\r\nassw0Rd!"));
-
-            // Test password validation
-            boolean failure = false;
-            System.out.println("Running tests...");
-            for(int i = 0; i < 100; i++)
-            {
-                String password = "" + i;
-                String hash = createHash(password);
-                String secondHash = createHash(password);
-                if(hash.equals(secondHash)) {
-                    System.out.println("FAILURE: TWO HASHES ARE EQUAL!");
-                    failure = true;
-                }
-                String wrongPassword = ""+(i+1);
-                if(validatePassword(wrongPassword, hash)) {
-                    System.out.println("FAILURE: WRONG PASSWORD ACCEPTED!");
-                    failure = true;
-                }
-                if(!validatePassword(password, hash)) {
-                    System.out.println("FAILURE: GOOD PASSWORD NOT ACCEPTED!");
-                    failure = true;
-                }
-            }
-            if(failure)
-                System.out.println("TESTS FAILED!");
-            else
-                System.out.println("TESTS PASSED!");
-        }
-        catch(Exception ex)
-        {
-            System.out.println("ERROR: " + ex);
-        }
     }
 }

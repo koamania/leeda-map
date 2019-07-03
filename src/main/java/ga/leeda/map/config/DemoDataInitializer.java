@@ -16,6 +16,6 @@ public class DemoDataInitializer {
 
     @EventListener
     public void insertDemoData(ApplicationReadyEvent event) {
-        this.userService.insertNewUser("koamania2@gmail.com", "1234");
+        this.userService.insertNewUser("iwantkakao@daum.net", "123123!");
     }
 }

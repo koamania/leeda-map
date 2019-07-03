@@ -43,6 +43,7 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
+    @Transactional
     public void login(final LoginParam param) {
         if (SessionManager.get(SessionManager.SessionKey.LOGIN_INFO) != null) {
             return;
