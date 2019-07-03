@@ -6,6 +6,10 @@ import java.lang.annotation.Annotation;
 import java.util.Optional;
 
 public class AnnotationUtils {
+    private AnnotationUtils() {
+        // no - op
+    }
+
     @SuppressWarnings("unchecked")
     public static boolean isAnnotatedWith(HandlerMethod handler, Class annotationClass) {
         Class handlerClass = handler.getMethod().getDeclaringClass();

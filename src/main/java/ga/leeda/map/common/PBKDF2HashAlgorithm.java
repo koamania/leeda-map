@@ -10,6 +10,10 @@ import java.util.Arrays;
 
 public class PBKDF2HashAlgorithm {
 
+    private PBKDF2HashAlgorithm() {
+        // no - op
+    }
+
     private static final String ALGORITHM = "PBKDF2WithHmacSHA1";
 
     private static final int SALT_LENGTH = 24;
