@@ -26,6 +26,7 @@ release.properties
 *.ipr
 *.iws
 out/
+build/
 .idea_modules/
 
 ##########################
@@ -43,17 +44,6 @@ tmp/
 *~.nib
 local.properties
 .loadpath
-
-##########################
-## NetBeans
-##########################
-nbproject/private/
-build/
-nbbuild/
-dist/
-nbdist/
-nbactions.xml
-nb-configuration.xml
 
 ##########################
 ## OS X
