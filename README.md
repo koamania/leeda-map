@@ -22,7 +22,9 @@ spring boot 기본 포트로 8080을 사용합니다. 이미 사용중인 경우
 - ex) `java -jar -Dserver.port=8090 leeda-map.jar`
 
 ### h2 console 접속
-http://localhost:8080/h2-console/login.jsp
+- http://localhost:8080/h2-console/login.jsp
+- id : dhlee
+- pw : 11qqww22!!
 
 ## 개발 환경
 - JDK 8
