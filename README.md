@@ -10,6 +10,7 @@
 1. [jar 파일 다운로드](https://github.com/blackstoneroad/leeda-map/releases/download/0.0.1-SNAPSHOT/leeda-map.jar)
 2. 다운로드 받은 경로에서 커맨드 실행
     - `java -jar leeda-map.jar`
+3. http://localhost:8080 접속
     
 ## 참고 사항
 ### redis 관련  
@@ -19,6 +20,9 @@ embedded redis를 사용하게되므로 6379 포트를 이미 사용중인 경�
 ### http port 관련
 spring boot 기본 포트로 8080을 사용합니다. 이미 사용중인 경우 다른 포트로 변경해서 시작하기실 바랍니다.
 - ex) `java -jar -Dserver.port=8090 leeda-map.jar`
+
+### h2 console 접속
+http://localhost:8080/h2-console/login.jsp
 
 ## 개발 환경
 - JDK 8
