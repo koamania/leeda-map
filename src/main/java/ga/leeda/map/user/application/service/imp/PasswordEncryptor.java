@@ -7,6 +7,10 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 
 final class PasswordEncryptor {
+    private PasswordEncryptor() {
+        // no - op
+    }
+
     static String encrypt(String input) {
         try {
             return PBKDF2HashAlgorithm.createHash(input);

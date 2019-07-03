@@ -23,7 +23,10 @@ public class KakaoApiMapSearchEngine implements MapSearchEngine {
     @Value("${map-search.kakao.host}")
     private String kakaoApiHost;
 
-    @Value("${map-search.kakao.api-key}")
+    @Value("${map-search.kakao.api.local.search}")
+    private String kekaoLocalSearchPath;
+
+    @Value("${map-search.kakao.api.key}")
     private String kakaoApiKey;
 
     private final RestTemplate restTemplate;
@@ -49,7 +52,7 @@ public class KakaoApiMapSearchEngine implements MapSearchEngine {
         header.setContentType(MediaType.APPLICATION_JSON);
 
 
-        String path = "/v2/local/search/keyword.json";
+        String path = kekaoLocalSearchPath;
         UriComponentsBuilder builder = UriComponentsBuilder
                 .fromPath(path)
                 .scheme("https")
