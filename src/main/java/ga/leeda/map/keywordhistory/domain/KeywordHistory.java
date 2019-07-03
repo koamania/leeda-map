@@ -1,5 +1,6 @@
 package ga.leeda.map.keywordhistory.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import ga.leeda.map.keyword.domain.Keyword;
 import ga.leeda.map.user.domain.User;
 import lombok.Data;
@@ -18,6 +19,7 @@ public class KeywordHistory {
     private int id;
     @ManyToOne(targetEntity = User.class)
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User user;
 
     @ManyToOne(targetEntity = Keyword.class, cascade = CascadeType.ALL)

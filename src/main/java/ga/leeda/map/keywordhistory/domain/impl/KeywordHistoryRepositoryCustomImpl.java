@@ -4,6 +4,8 @@ import ga.leeda.map.keyword.domain.Keyword;
 import ga.leeda.map.keywordhistory.domain.KeywordHistory;
 import ga.leeda.map.keywordhistory.domain.KeywordHistoryRepositoryCustom;
 import ga.leeda.map.user.domain.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
@@ -42,7 +44,7 @@ public class KeywordHistoryRepositoryCustomImpl implements KeywordHistoryReposit
     }
 
     @Override
-    public List<KeywordHistory> findByUser(final User user, final Pageable pageable) {
+    public Page<KeywordHistory> findByUser(final User user, final Pageable pageable) {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<KeywordHistory> criteriaQuery = criteriaBuilder.createQuery(KeywordHistory.class);
 
@@ -56,12 +58,16 @@ public class KeywordHistoryRepositoryCustomImpl implements KeywordHistoryReposit
 
         TypedQuery<KeywordHistory> query = em.createQuery(criteriaQuery);
 
-        int pageNumber = pageable.getPageNumber() <= 0 ? 1 : pageable.getPageNumber();
-        int pageSize = pageable.getPageSize() <= 0 ? 1 : pageable.getPageSize();
+        List<KeywordHistory> results = query.setFirstResult((int) pageable.getOffset())
+                .setMaxResults(pageable.getPageSize())
+                .getResultList();
 
-        query.setFirstResult((pageNumber - 1) * pageSize);
-        query.setMaxResults(pageSize);
+        CriteriaQuery<Long> countQuery = criteriaBuilder.createQuery(Long.class);
+        Root<KeywordHistory> keywordHistoryRootCount = countQuery.from(KeywordHistory.class);
+        countQuery.select(criteriaBuilder.count(keywordHistoryRootCount)).where(userEqual);
 
-        return query.getResultList();
+        long count = em.createQuery(countQuery).getSingleResult();
+
+        return new PageImpl<>(results, pageable, count);
     }
 }

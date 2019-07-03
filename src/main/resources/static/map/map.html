@@ -3,7 +3,7 @@
 <head>
     <title>지도 검색 페이지</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"/>
+    <link rel="stylesheet" href="/dist/semantic-ui/semantic.min.css"/>
     <link rel="stylesheet" href="/map/css/styles.css"/>
 </head>
 <body>
@@ -16,19 +16,53 @@
             <input class="prompt map-search-box" id="searchBox" type="text" placeholder="주소 및 위치명을 입력해주세요">
             <i class="search icon"></i>
         </div>
-        <div class="recently-keyword-wrapper">
-            <div class="ui label">
-                <span id="recentlyKeywordTitle">최근 검색어</span>
-            </div>
-        </div>
+        <div class="ui button" id="keywordHistoryBtn">검색 히스토리</div>
+        <div class="ui button" id="keywordRankBtn">인기 검색어</div>
         <div class="search-result-box results">
             <div class="ui list" id="searchResultList"></div>
+        </div>
+    </div>
+    <div class="ui modal" id="searchHistory">
+        <div class="header">검색 히스토리</div>
+        <div class="scrolling content">
+            <table class="ui yellow selectable celled table">
+                <thead>
+                <tr>
+                    <th>검색어</th>
+                    <th>검색 날짜</th>
+                </tr>
+                </thead>
+                <tbody id="historyItemWrapper">
+                <tr>
+                    <td colspan="2" class="colspanText">검색한 내역을 찾을 수 없습니다.</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="ui modal" id="keywordRank">
+        <div class="header">인기 검색어</div>
+        <div class="scrolling content">
+            <table class="ui red selectable celled table">
+                <thead>
+                <tr>
+                    <th>검색어</th>
+                    <th>검색 횟수</th>
+                </tr>
+                </thead>
+                <tbody id="rankItemWrapper">
+                <tr>
+                    <td colspan="2" class="colspanText">인기 검색어 정보를 찾을 수 없습니다.</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
     <footer></footer>
 </main>
 </body>
 <script type="text/javascript" src="/dist/js/jquery-2.2.4.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+<script type="text/javascript" src="/dist/semantic-ui/semantic.min.js"></script>
+<script type="text/javascript" src="/common/js/date.js"></script>
 <script type="text/javascript" src="/map/js/map.js"></script>
 </html>
