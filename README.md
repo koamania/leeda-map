@@ -5,12 +5,12 @@
 - id : iwantkakao@daum.net
 - pw : 123123!
 ## 실행 방법
-1. [jar 파일 다운로드](https://github.com/blackstoneroad/leeda-map/releases/download/0.0.1-SNAPSHOT/map-0.0.1-SNAPSHOT.jar)
+1. [jar 파일 다운로드](https://github.com/blackstoneroad/leeda-map/releases/download/0.0.1-SNAPSHOT/leeda-map.jar)
 2. 다운로드 받은 경로에서 커맨드 실행
-    - `java -jar map-0.0.1-SNAPSHOT.jar`
+    - `java -jar leeda-map.jar`
 ## 참고 사항
 embedded redis를 사용하게되므로 6379 포트를 이미 사용중인 경우 다른 포트로 변경해서 시작하시길 바랍니다.  
- - ex) `java -jar map-0.0.1-SNAPSHOT.jar --spring.redis.port=26379`
+ - ex) `java -jar leeda-map.jar --spring.redis.port=26379`
 ## 개발 환경
 - JDK 8
 - Gradle 4.10.2
