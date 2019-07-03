@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 
+/**
+ * 키워드 히스토리에 대한 rest api controller
+ */
 @RestController
 @RequestMapping("/api/map/search/keyword/history")
 @LoginRequired(handler = LoginRequired.ErrorHandler.RESPONSE_JSON)
@@ -29,6 +32,12 @@ public class KeywordHistoryController {
         this.historyService = historyService;
     }
 
+    /**
+     * keyword history 정보를 가져온다.
+     *
+     * @param pageable
+     * @return
+     */
     @GetMapping
     public ResponseEntity<Page<KeywordHistory>> getKeywordHistory(Pageable pageable) {
         int userId = SessionManager.get(SessionManager.SessionKey.LOGIN_INFO);

@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
+/**
+ * 로그인 처리를 위한 rest api
+ */
 @RestController
 @RequestMapping("/api/user")
 public class UserLoginApiController {

@@ -6,6 +6,9 @@ import lombok.Getter;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
+/**
+ * 로그인에 필요한 파라미터
+ */
 @Getter
 @AllArgsConstructor
 public class LoginParam {

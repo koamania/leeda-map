@@ -6,6 +6,10 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+/**
+ * Keyword 엔티티
+ * Keyword의 사용량 확인의 용이성 및 확장성을 위해서 별도의 엔티티로 분리
+ */
 @Entity
 @Data
 @NoArgsConstructor

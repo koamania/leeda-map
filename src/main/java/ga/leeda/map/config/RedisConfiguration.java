@@ -7,6 +7,9 @@ import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactor
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
+/**
+ * 레디스 세션 매니저 설정을 위한 클래스
+ */
 @EnableRedisHttpSession
 public class RedisConfiguration {
 

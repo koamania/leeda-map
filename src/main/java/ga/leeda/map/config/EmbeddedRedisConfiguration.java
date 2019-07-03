@@ -8,6 +8,10 @@ import redis.embedded.RedisServer;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
+/**
+ * Embedded redis 설정을 위한 클래스
+ * bean initialize 시점에 서버를 start하고 destroy 시점에 shutdown
+ */
 @Component
 @Profile("local")
 public class EmbeddedRedisConfiguration {

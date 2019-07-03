@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 import java.util.Optional;
 
+/**
+ * 장소 검색을 위한 api
+ */
 @RestController
 @RequestMapping("/api/map")
 @LoginRequired(handler = LoginRequired.ErrorHandler.RESPONSE_JSON)

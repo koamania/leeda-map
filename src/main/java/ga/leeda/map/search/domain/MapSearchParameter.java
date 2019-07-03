@@ -9,6 +9,9 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Positive;
 
+/**
+ * 장소 검색에 필요한 파라미터
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

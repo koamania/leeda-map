@@ -10,6 +10,13 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import java.util.Date;
 
+/**
+ * 키워드 히스토리 엔티티
+ * {@link KeywordHistory} 엔티티와 {@link User} 엔티티와는 ManyToOne 관게를 가짐
+ * {@link KeywordHistory} 엔티티와 {@link Keyword} 엔티티와는 ManyToOne 관게를 가짐
+ * <p>
+ * json으로 반환 시 User entity는 보안을 위해 JsonIgnore
+ */
 @Entity
 @Data
 @NoArgsConstructor
