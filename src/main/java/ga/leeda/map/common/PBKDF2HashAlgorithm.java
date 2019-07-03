@@ -8,6 +8,9 @@ import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.util.Arrays;
 
+/**
+ * PBJDF2 Hash를 생성 및 validation 목적의 util 클래스
+ */
 public class PBKDF2HashAlgorithm {
 
     private PBKDF2HashAlgorithm() {
@@ -16,6 +19,7 @@ public class PBKDF2HashAlgorithm {
 
     private static final String ALGORITHM = "PBKDF2WithHmacSHA1";
 
+    // 변경 가능 인자
     private static final int SALT_LENGTH = 24;
     private static final int HASH_LENGTH = 24;
     private static final int ITERATIONS = 1000;
@@ -24,6 +28,16 @@ public class PBKDF2HashAlgorithm {
     private static final int SALT_INDEX = 1;
     private static final int PBKDF2_INDEX = 2;
 
+    /**
+     * 해시를 생성한다.
+     * ${ITERATION}:${HASH_SALT}|${HASH_PASSWORD}
+     * 형식의 3부분으로 구성이된다.
+     *
+     * @param password hash 대상 password input
+     * @return hash string
+     * @throws InvalidKeySpecException
+     * @throws NoSuchAlgorithmException
+     */
     public static String createHash(String password) throws InvalidKeySpecException, NoSuchAlgorithmException {
         return createHash(password.toCharArray());
     }

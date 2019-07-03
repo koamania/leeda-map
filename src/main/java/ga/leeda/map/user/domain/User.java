@@ -11,6 +11,9 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
+/**
+ * 사용자 정보에 대한 엔티티 클래스
+ */
 @Data
 @Entity
 @AllArgsConstructor

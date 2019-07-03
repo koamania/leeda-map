@@ -17,6 +17,10 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 
+/**
+ * login 여부를 확인하기 위한 Interceptor 클래스
+ * TODO 추후 spring security 로 변경해서 구현해보자
+ */
 @Component
 public class LoginRequiredInterceptor extends HandlerInterceptorAdapter {
 

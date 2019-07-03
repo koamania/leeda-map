@@ -14,6 +14,9 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.Map;
 
+/**
+ * 카카오 검색 API를 활용한 장소 검색 클래스
+ */
 @Component
 public class KakaoApiMapSearchEngine implements MapSearchEngine {
 

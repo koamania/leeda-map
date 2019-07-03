@@ -1,8 +1,8 @@
-package ga.leeda.map.keyword.domain.application.service.impl;
+package ga.leeda.map.keyword.application.service.impl;
 
+import ga.leeda.map.keyword.application.service.KeywordService;
 import ga.leeda.map.keyword.domain.Keyword;
 import ga.leeda.map.keyword.domain.KeywordRepository;
-import ga.leeda.map.keyword.domain.application.service.KeywordService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
