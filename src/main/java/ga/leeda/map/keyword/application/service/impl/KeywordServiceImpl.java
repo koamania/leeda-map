@@ -3,6 +3,8 @@ package ga.leeda.map.keyword.application.service.impl;
 import ga.leeda.map.keyword.application.service.KeywordService;
 import ga.leeda.map.keyword.domain.Keyword;
 import ga.leeda.map.keyword.domain.KeywordRepository;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,7 +20,15 @@ public class KeywordServiceImpl implements KeywordService {
 
 
     @Override
+    @Cacheable(value = "top_rank_keyword")
     public List<Keyword> getTopRankKeywordList(int resultCount) {
         return repository.findTopRankKeyword(resultCount);
+    }
+
+    @Override
+    @CachePut(value = "keyword", key = "#keywordString")
+    public Keyword findOrCreate(final String keywordString) {
+
+        return repository.findOrCreate(keywordString);
     }
 }

@@ -1,7 +1,7 @@
 package ga.leeda.map.keywordhistory.application.service.impl;
 
+import ga.leeda.map.keyword.application.service.KeywordService;
 import ga.leeda.map.keyword.domain.Keyword;
-import ga.leeda.map.keyword.domain.KeywordRepository;
 import ga.leeda.map.keywordhistory.application.service.KeywordHistoryService;
 import ga.leeda.map.keywordhistory.domain.KeywordHistory;
 import ga.leeda.map.keywordhistory.domain.KeywordHistoryRepository;
@@ -17,12 +17,11 @@ import java.util.Date;
 
 @Service
 public class KeywordHistoryServiceImpl implements KeywordHistoryService {
-
-    private KeywordRepository keywordRepository;
+    private KeywordService keywordService;
     private KeywordHistoryRepository historyRepository;
 
-    public KeywordHistoryServiceImpl(final KeywordRepository keywordRepository, final KeywordHistoryRepository historyRepository) {
-        this.keywordRepository = keywordRepository;
+    public KeywordHistoryServiceImpl(final KeywordService keywordService, final KeywordHistoryRepository historyRepository) {
+        this.keywordService = keywordService;
         this.historyRepository = historyRepository;
     }
 
@@ -30,7 +29,7 @@ public class KeywordHistoryServiceImpl implements KeywordHistoryService {
     @Async
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void addHistory(final User user, final String keywordString) {
-        Keyword keyword = keywordRepository.findOrCreate(keywordString);
+        Keyword keyword = keywordService.findOrCreate(keywordString);
         keyword.increaseHitCount();
 
         KeywordHistory keywordHistory = historyRepository.findByKeyword(user, keyword)
