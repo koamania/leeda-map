@@ -32,7 +32,7 @@ public class KeywordHistoryServiceImpl implements KeywordHistoryService {
         Keyword keyword = keywordService.findOrCreate(keywordString);
         keyword.increaseHitCount();
 
-        KeywordHistory keywordHistory = historyRepository.findByKeyword(user, keyword)
+        KeywordHistory keywordHistory = historyRepository.findByUserAndKeyword(user, keyword)
                 .orElseGet(() -> {
                     KeywordHistory newKeywordHistory = new KeywordHistory();
                     newKeywordHistory.setUser(user);

@@ -1,6 +1,5 @@
 package ga.leeda.map.keyword.domain;
 
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -22,11 +21,4 @@ public interface KeywordRepositoryCustom {
      * @return
      */
     Keyword findOrCreate(String keywordString);
-
-    /**
-     * 검색어 hitCount가 높은 resultcount개만큼 반환
-     * @param resultCount 가져올 column 갯수
-     * @return 검색된 키워드 리스트
-     */
-    List<Keyword> findTopRankKeyword(int resultCount);
 }

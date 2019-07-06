@@ -11,6 +11,7 @@ import java.util.Map;
 @Getter
 class KakaoSearchMapSearchResult implements MapSearchResult {
 
+    private static final long serialVersionUID = 6395167121152791771L;
     private int totalCount = 0;
     private int resultCount = 0;
     private boolean end = false;

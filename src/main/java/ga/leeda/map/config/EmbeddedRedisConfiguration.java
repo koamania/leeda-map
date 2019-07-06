@@ -25,12 +25,14 @@ public class EmbeddedRedisConfiguration {
     public void startRedis() {
         redisServer = new RedisServer(redisPort);
         redisServer.start();
+
+        Runtime.getRuntime().addShutdownHook(new Thread(this::stopRedis));
     }
 
     @PreDestroy
     public void stopRedis() {
-        if (this.redisServer != null) {
-            redisServer.start();
+        if (this.redisServer != null && this.redisServer.isActive()) {
+            redisServer.stop();
         }
     }
 }

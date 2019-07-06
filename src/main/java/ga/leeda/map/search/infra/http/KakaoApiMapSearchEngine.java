@@ -7,6 +7,7 @@ import ga.leeda.map.search.domain.MapSearchParameter;
 import ga.leeda.map.search.domain.MapSearchResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -40,6 +41,7 @@ public class KakaoApiMapSearchEngine implements MapSearchEngine {
     }
 
     @Override
+    @Cacheable(value = "searchResult", key = "{#parameter.query, #parameter.page}", cacheManager = "kakaoCacheManager")
     public MapSearchResult search(final MapSearchParameter parameter) {
         JsonNode node = callSearchApi(parameter);
 
