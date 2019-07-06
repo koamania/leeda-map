@@ -11,8 +11,7 @@ import org.springframework.data.domain.Pageable;
 public interface KeywordHistoryService {
     /**
      * 히스토리 정보를 추가한다.
-     *
-     * @param user          대상 유저
+     *  @param user          대상 유저
      * @param keywordString 추가할 키워드
      */
     void addHistory(User user, String keywordString);

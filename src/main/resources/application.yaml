@@ -14,6 +14,8 @@ spring:
     port: 6379
   session:
     store-type: REDIS
+  cache:
+    type: redis
 
 map-search:
   kakao:

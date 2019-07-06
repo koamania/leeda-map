@@ -15,4 +15,6 @@ public interface KeywordService {
      * @return 키워드 갯수
      */
     List<Keyword> getTopRankKeywordList(int resultCount);
+
+    Keyword findOrCreate(String keywordString);
 }
