@@ -7,6 +7,7 @@ import lombok.Getter;
 @Getter
 @Builder
 class KakaoPlaceInfomation implements PlaceInfomation {
+    private static final long serialVersionUID = 3377231185991229059L;
     private String id;
     private String placeName;
     private String addressName;

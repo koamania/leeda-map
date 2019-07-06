@@ -16,6 +16,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class Keyword implements Serializable {
 
+    private static final long serialVersionUID = -5955464466373786971L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
