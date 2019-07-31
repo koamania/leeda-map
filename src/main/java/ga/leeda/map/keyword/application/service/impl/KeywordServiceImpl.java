@@ -47,6 +47,5 @@ public class KeywordServiceImpl implements KeywordService {
         } else {
             throw new IllegalStateException();
         }
-
     }
 }
