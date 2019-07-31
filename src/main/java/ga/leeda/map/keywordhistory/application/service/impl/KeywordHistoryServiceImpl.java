@@ -17,8 +17,8 @@ import java.util.Date;
 
 @Service
 public class KeywordHistoryServiceImpl implements KeywordHistoryService {
-    private KeywordService keywordService;
-    private KeywordHistoryRepository historyRepository;
+    private final KeywordService keywordService;
+    private final KeywordHistoryRepository historyRepository;
 
     public KeywordHistoryServiceImpl(final KeywordService keywordService, final KeywordHistoryRepository historyRepository) {
         this.keywordService = keywordService;

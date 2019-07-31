@@ -3,6 +3,8 @@ package ga.leeda.map.keyword.application.service.impl;
 import ga.leeda.map.keyword.application.service.KeywordService;
 import ga.leeda.map.keyword.domain.Keyword;
 import ga.leeda.map.keyword.domain.KeywordRepository;
+import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.PageRequest;
@@ -14,9 +16,11 @@ import java.util.List;
 public class KeywordServiceImpl implements KeywordService {
 
     private final KeywordRepository repository;
+    private final RedissonClient redissonClient;
 
-    public KeywordServiceImpl(final KeywordRepository repository) {
+    public KeywordServiceImpl(final KeywordRepository repository, final RedissonClient redissonClient) {
         this.repository = repository;
+        this.redissonClient = redissonClient;
     }
 
 
@@ -30,7 +34,19 @@ public class KeywordServiceImpl implements KeywordService {
     @Override
     @CachePut(value = "keyword", key = "#keywordString")
     public Keyword findOrCreate(final String keywordString) {
+        // 왜 lock 해지 안했는데 세마포어가 풀리지
+        RLock lock = redissonClient.getLock("KEYWORD-INSERT0-SEMAPHORE");
+        if (lock.tryLock()) {
+            try {
+                return repository.findOrCreate(keywordString);
+            } finally {
+                if (lock.isLocked()) {
+                    lock.unlock();
+                }
+            }
+        } else {
+            throw new IllegalStateException();
+        }
 
-        return repository.findOrCreate(keywordString);
     }
 }
